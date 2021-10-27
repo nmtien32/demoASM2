@@ -8,7 +8,7 @@ hbs.registerPartials(__dirname +'/views/partials')
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb+srv://truongsonic:truongsonic@cluster0.vezb1.mongodb.net/test';
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser  .urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + '/public'))
 
@@ -177,6 +177,6 @@ app.get('/deleteU',async (req,res)=>{
 })
 
 
-var PORT = process.env.PORT || 2999
+var PORT = process.env.PORT || 5000
 app.listen(PORT)
 console.log("Server is running!")
