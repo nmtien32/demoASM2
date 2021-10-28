@@ -6,9 +6,11 @@ app.set('view engine','hbs');
 hbs.registerPartials(__dirname +'/views/partials')
 
 var MongoClient = require('mongodb').MongoClient;
+
 var url = 'mongodb+srv://truongsonic:truongsonic@cluster0.vezb1.mongodb.net/test';
+
 var bodyParser = require("body-parser");
-app.use(bodyParser  .urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + '/public'))
 
@@ -36,10 +38,6 @@ app.post('/doLogin', async (req,res)=>{
     else{
         res.render('index',{model:results})
     }
-})
-
-app.get('/exit',(req,res)=>{
-    res.render('login')
 })
 
 app.get('/logout',(req,res)=>{
@@ -83,7 +81,7 @@ app.post('/doSearch',async(req,res)=>{
     let nameInput = req.body.txtName;
     let client = await MongoClient.connect(url);
     let dbo = client.db("ProductDB2");
-    let results = await dbo.collection("products").find({productName:nameInput}).toArray();
+    let results = await dbo.collection("products").find({productName:new RegExp(nameInput,'i')}).toArray();
     res.render('viewProduct',{model:results})
 
 })
