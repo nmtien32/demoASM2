@@ -7,7 +7,7 @@ hbs.registerPartials(__dirname + '/views/partials')
 
 var MongoClient = require('mongodb').MongoClient;
 
-var url = 'mongodb+srv://nmtien:tien3299@cluster0.vezb1.mongodb.net/test';
+var url = 'mongodb+srv://nmtien:tien3299@cluster0.vgafm.mongodb.net/test';
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
