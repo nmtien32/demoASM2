@@ -62,11 +62,16 @@ app.get('/insert', (req, res) => {
 })
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.post('/doInsert', async(req, res) => {
     let nameInput = req.body.txtName;
     let sizeInput = req.body.txtSize;
     let amountInput = req.body.txtAmount;
     let priceInput = req.body.txtPrice;
+    if (nameInput.length == 0) {
+        res.render('newProduct', { errorMsg: 'phai dien du thong tin' })
+        return;
+    }
     let client = await MongoClient.connect(url);
     let dbo = client.db("ProductDB2");
     let newProduct = { productName: nameInput, size: sizeInput, amount: amountInput, price: priceInput };
